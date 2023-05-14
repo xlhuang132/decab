@@ -1,0 +1,40 @@
+
+
+OUTPUT_DIR: "outputs/" 
+SHOW_STEP: 100
+SAVE_EPOCH: 10
+MAX_EPOCH: 500
+TRAIN_STEP: 500  
+ALGORITHM:
+  NAME: "OpenMatch"
+  CONFIDENCE_THRESHOLD: 0.95  
+  OPENMATCH:
+    LAMBDA_OEM: 0.1
+    LAMBDA_SOCR: 1.0
+    MU: 2. 
+    START_FIX: 10
+
+MODEL:
+  NAME: "WRN_28_8"  
+  DUAL_HEAD_ENABLE: True   
+  DUAL_HEAD_OUT_DIM: 200
+
+DATASET:
+  NAME: "cifar100"
+  ROOT: "./data/cifar100" 
+  NUM_CLASSES: 100
+  GROUP_SPLITS: [30,35,35]  
+  BATCH_SIZE: 16
+  DL:
+    NUM_LABELED_HEAD: 150
+    IMB_FACTOR_L: 100
+  DU:
+    ID:
+      NUM_UNLABELED_HEAD: 300 
+      IMB_FACTOR_UL: 100 
+    OOD:
+      ENABLE: True
+      DATASET: 'TIN' 
+      INCLUDE_ALL: True
+      
+ 

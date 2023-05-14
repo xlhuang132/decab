@@ -1,0 +1,38 @@
+
+
+OUTPUT_DIR: "outputs/" 
+SHOW_STEP: 100
+SAVE_EPOCH: 10
+MAX_EPOCH: 500
+TRAIN_STEP: 500  
+ALGORITHM:
+  NAME: "CReST"  
+  CREST:
+    GEN_PERIOD_EPOCH: 100 #  5gens x 100epoch = total 500 epochs
+    ALPHA : 3.0
+    TMIN : 0.5
+    PROGRESSIVE_ALIGN : False
+ 
+MODEL:
+  NAME: "WRN_28_2"  
+
+DATASET:
+  NAME: "cifar10"
+  ROOT: "./data/cifar10" 
+  NUM_CLASSES: 10
+  GROUP_SPLITS: [3,3,4]
+   
+  UNLABELED_DATASET_RETURN_INDEX: True 
+  DL:
+    NUM_LABELED_HEAD: 1500
+    IMB_FACTOR_L: 100
+  DU:
+    ID:
+      NUM_UNLABELED_HEAD: 3000
+      IMB_FACTOR_UL: 100 
+    OOD:
+      ENABLE: True
+      DATASET: 'TIN' 
+      INCLUDE_ALL: True  
+     
+   
