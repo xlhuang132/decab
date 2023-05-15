@@ -1,10 +1,7 @@
 from .cifar10 import *
 from .cifar100 import * 
 from .build_transform import *
-from dataset.ood_dataset_map import ood_dataset_map
-from dataset.ood_dataset import OOD_Dataset
-from .imagenet import get_imagenet_ssl_dataset
-from .mydataset import MyDataset
+from dataset.ood_dataset_map import ood_dataset_map 
 import os
 
 def build_test_dataset(cfg):

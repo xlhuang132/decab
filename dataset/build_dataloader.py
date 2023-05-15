@@ -4,8 +4,7 @@ from dataset.build_dataset import *
 import torch.utils.data as data
 from dataset.build_sampler import * 
 import torch
-from .random_sampler import RandomSampler
-from .class_reversed_sampler import ClassReversedSampler
+from .random_sampler import RandomSampler 
 
 def build_new_labeled_loader(cfg, new_l_dataset,sampler_type=None):
     batch_size=cfg.DATASET.BATCH_SIZE
