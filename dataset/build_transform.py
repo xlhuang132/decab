@@ -3,7 +3,7 @@
 import torchvision
 from .transform.rand_augment import RandAugment
 from .transform.transforms import TransformFixMatch,TransformOpenMatch
-from .transform.transforms import SimCLRAugmentation
+from .transform.transforms import ContraAugmentation
 from dataset.transform.transforms import Augmentation,GeneralizedSSLTransform
 import copy 
 from torchvision import transforms

@@ -146,15 +146,8 @@ class ContraAugmentation:
         ra_first=False
     ) :
         h, w = img_size
-        t = []
-        # transform=torchvision.transforms.Compose([
-        #                 torchvision.transforms.RandomResizedCrop(32),
-        #                 torchvision.transforms.RandomHorizontalFlip(p=0.5),
-        #                 torchvision.transforms.RandomApply([torchvision.transforms.ColorJitter(0.4, 0.4, 0.4, 0.1)], p=0.8),
-        #                 torchvision.transforms.RandomGrayscale(p=0.2),
-        #                 torchvision.transforms.ToTensor(),
-        #                 torchvision.transforms.Normalize(mean, std)])
-
+        t = [] 
+        
         # random horizontal flip 
         t.append(transforms.RandomHorizontalFlip(p=0.5))
 
