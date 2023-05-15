@@ -2,7 +2,7 @@ import logging
 
 import torchvision
 from yacs.config import CfgNode
-from .build_transform import  build_simclr_transform
+from .build_transform import  build_contra_transform
 from .base import BaseNumpyDataset
 from .transform import build_transforms
 from .utils import make_imbalance, map_dataset, split_trainval, split_val_from_train, x_u_split,ood_inject
@@ -97,7 +97,7 @@ def get_cifar100(root, out_dataset, start_label=0,ood_ratio=0,
      
     train_dataset =CIFAR100Dataset(total_train,transforms=transform_train_ul,num_classes=num_classes)
     
-    transform_pre=build_simclr_transform(cfg)
+    transform_pre=build_contra_transform(cfg)
     pre_train_dataset  =  CIFAR100Dataset(total_train,transforms=transform_pre,num_classes=num_classes)
     
     return l_train, ul_train, train_dataset, cifar100_valid, cifar100_test,pre_train_dataset
