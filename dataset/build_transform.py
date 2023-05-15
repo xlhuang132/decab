@@ -146,3 +146,26 @@ def build_transform(cfg):
         resolution=resolution
     )
     return l_train,ul_train,eval_aug
+
+
+def build_contra_transform(cfg):
+    dataset=cfg.DATASET.NAME
+    
+    resolution = cfg.DATASET.RESOLUTION
+    if dataset == "cifar10":
+        img_size = (32, 32)
+        norm_params = dict(mean=(0.4914, 0.4822, 0.4465), std=(0.2471, 0.2435, 0.2616))
+
+    elif dataset == "cifar100":
+        norm_params = dict(mean=(0.5071, 0.4865, 0.4409), std=(0.2673, 0.2564, 0.2762))
+        img_size = (32, 32)
+
+    elif dataset == "stl10":
+        img_size = (96, 96)  # original image size
+        norm_params = dict(mean=(0.4914, 0.4822, 0.4465), std=(0.2471, 0.2435, 0.2616))
+    elif dataset =='svhn':
+        img_size = (32, 32)  # original image size
+        norm_params = dict(mean=(0.4380, 0.4440, 0.4730), std=(0.1751, 0.1771, 0.1744))
+    
+    transform=ContraAugmentation(cfg, img_size,norm_params=norm_params, resolution=resolution)
+    return TransformTwice(transform)

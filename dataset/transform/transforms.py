@@ -132,7 +132,7 @@ class Augmentation:
         return self.t(img)
 
 
-class SimCLRAugmentation:
+class ContraAugmentation:
 
     def __init__(
         self,
