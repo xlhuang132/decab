@@ -69,11 +69,7 @@ class DASOTrainer(BaseTrainer):
         # push memory queue
         num_labels = targets_x.size(0)
         with torch.no_grad():
-            if self.ema_enable:
-                l_feats = self.ema_model(inputs_x, return_encoding=True) 
-            else:
-                
-                l_feats = self.model(inputs_x, return_encoding=True) 
+            l_feats = self.model(inputs_x, return_encoding=True) 
             self.queue.enqueue(l_feats.clone().detach(), targets_x.clone().detach())
             
             
