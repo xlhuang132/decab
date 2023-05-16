@@ -77,9 +77,7 @@ def get_cifar10(root, out_dataset, start_label=0,
         ul_train = CIFAR10Dataset(ul_train, transforms=transform_train_ul,num_classes=num_classes)
 
     l_train = CIFAR10Dataset(l_train, transforms=transform_train,
-                             num_classes=num_classes,
-                             dual_sample=cfg.DATASET.DUAL_SAMPLER.ENABLE,
-                             dual_sample_type=cfg.DATASET.DUAL_SAMPLER.NAME)
+                             num_classes=num_classes)
     
     if cifar10_valid is not None:
         cifar10_valid = CIFAR10Dataset(cifar10_valid, transforms=transform_val,num_classes=num_classes)

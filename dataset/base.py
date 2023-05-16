@@ -71,8 +71,7 @@ class BaseNumpyDataset(Dataset):
                 sample_img = self.transforms(sample_img)
             meta=dict()
             meta['dual_image'] = sample_img
-            meta['dual_label'] = sample_label
-
+            meta['dual_label'] = sample_label 
             return img, label, meta
             
         if self.soft_domain: 
