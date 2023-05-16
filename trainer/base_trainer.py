@@ -138,8 +138,8 @@ class BaseTrainer():
                 eta_string = str(datetime.timedelta(seconds=int(eta_seconds)))
                     
                 group_acc=fusion_matrix.get_group_acc(self.cfg.DATASET.GROUP_SPLITS) 
+                self.train_group_accs.append(group_acc)
                 results=self.evaluate()
-                
                 if self.best_val<results[0]:
                     self.best_val=results[0]
                     self.best_val_test=results[1]
