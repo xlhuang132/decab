@@ -13,8 +13,7 @@ from models.feature_queue import FeatureQueue
 import os   
 import datetime 
 from utils.utils import *
-import torch.nn.functional as F
-from utils.plot import plot_pr
+import torch.nn.functional as F 
 from utils import AverageMeter, accuracy, create_logger,\
     plot_group_acc_over_epoch,prepare_output_path,plot_loss_over_epoch,plot_acc_over_epoch
 from utils.build_optimizer import get_optimizer, get_scheduler
