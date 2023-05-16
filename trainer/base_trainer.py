@@ -21,7 +21,6 @@ from dataset.base import BaseNumpyDataset
 from utils import FusionMatrix 
 from models.projector import  Projector 
  
-
 class BaseTrainer():
     def __init__(self,cfg):
         self.local_rank=cfg.LOCAL_RANK
@@ -118,9 +117,8 @@ class BaseTrainer():
         acc = AverageMeter()      
         self.loss_init()
         start_time = time.time()   
-        for self.iter in range(self.start_iter, self.max_iter):
-            self.pretraining= self.warmup_enable and self.iter<=self.warmup_iter 
-            return_data=self.train_step(self.pretraining)
+        for self.iter in range(self.start_iter, self.max_iter): 
+            return_data=self.train_step()
             if return_data is not None:
                 pred,gt=return_data[0],return_data[1]
                 fusion_matrix.update(pred, gt) 
@@ -187,9 +185,7 @@ class BaseTrainer():
             self.ul_test_loader = _build_loader(
                 self.cfg, new_ul_test_dataset, is_train=False, has_label=False
             )
-        self.unlabeled_train_iter = iter(new_loader)
-    
-     
+        self.unlabeled_train_iter = iter(new_loader) 
     
     def operate_after_epoch(self):  
         self.logger.info("=="*30) 
