@@ -103,12 +103,8 @@ class DeCABTrainer(BaseTrainer):
         with torch.no_grad(): 
             probs_u_w = torch.softmax(logits_u_w.detach(), dim=-1)
             max_probs, pred_class = torch.max(probs_u_w, dim=-1)          
-        
-        if self.class_aware_thresh_enable:
-            loss_weight = max_probs.ge(self.class_thresh[pred_class]).float() 
-        else:
-            loss_weight = max_probs.ge(self.conf_thres).float()     
-        
+         
+        loss_weight = max_probs.ge(self.class_thresh[pred_class]).float()
         loss_cons = self.ul_criterion(
             logits_u_s, pred_class, weight=loss_weight, avg_factor=logits_u_s.size(0)
         )
@@ -116,11 +112,8 @@ class DeCABTrainer(BaseTrainer):
         
         # 3. ctr loss   
         features = torch.cat([f_u_s1.unsqueeze(1), f_u_s2.unsqueeze(1)], dim=1)  
-        conf_sample=loss_weight    
-        if self.sample_weight_enable:
-            sample_weight=conf_sample*(1-max_probs)                        
-        else:
-            sample_weight=conf_sample 
+        conf_sample=loss_weight     
+        sample_weight=conf_sample*(1-max_probs)   
         if self.epoch>self.warmup_epoch: 
             with torch.no_grad():  
                 f=encoding[batch_size:batch_size+inputs_u_w.size(0)].detach()
