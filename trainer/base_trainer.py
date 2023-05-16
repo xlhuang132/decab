@@ -139,7 +139,6 @@ class BaseTrainer():
                     
                 if self.epoch%self.save_epoch==0:
                     self.save_checkpoint()
-                self.train_losses.append(self.losses.avg)
                 self.logger.info("== Pretraining is enable:{}".format(self.pretraining))
                 self.logger.info('== Train_loss:{:>5.4f}  train_loss_x:{:>5.4f}   train_loss_u:{:>5.4f} '.\
                     format(self.losses.avg, self.losses_x.avg, self.losses_u.avg))
