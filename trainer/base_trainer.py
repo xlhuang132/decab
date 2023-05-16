@@ -15,12 +15,10 @@ import datetime
 from utils.utils import *
 import torch.nn.functional as F 
 from utils import AverageMeter, create_logger,prepare_output_path
-from utils.build_optimizer import get_optimizer, get_scheduler
-from utils.utils import cal_metric,print_results
+from utils.build_optimizer import get_optimizer, get_scheduler 
 from dataset.build_dataloader import _build_loader
 from dataset.base import BaseNumpyDataset
-from utils import FusionMatrix
-from loss.contrastive_loss import * 
+from utils import FusionMatrix 
 from models.projector import  Projector 
  
 
