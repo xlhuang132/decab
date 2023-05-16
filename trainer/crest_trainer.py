@@ -111,7 +111,7 @@ class CReSTTrainer(FixMatchTrainer):
         return self.get_label_dist(dataset=self.current_l_dataset, **kwargs)
     
     def operate_after_epoch(self):
-        if self.iter>self.warmup_iter and self.iter % self.gen_period_steps==0:
+        if self.iter>0 and self.iter % self.gen_period_steps==0:
             self._build_new_generation()
         self.logger.info("=="*30)
         
