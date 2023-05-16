@@ -22,8 +22,7 @@ from utils import FusionMatrix
 from models.projector import  Projector 
  
 class BaseTrainer():
-    def __init__(self,cfg):
-        self.local_rank=cfg.LOCAL_RANK
+    def __init__(self,cfg): 
         self.cfg=cfg
         self.logger, _ = self.create_logger(cfg)        
         self.path,self.model_dir,self.pic_dir =self.prepare_output_path(cfg,self.logger)
@@ -38,8 +37,7 @@ class BaseTrainer():
         # =================== build criterion ==============
         self.build_loss()
         # ========== build optimizer ===========         
-        self.optimizer = get_optimizer(cfg, self.model)
-        
+        self.optimizer = get_optimizer(cfg, self.model) 
         # ========== build dataloader ==========     
         
         self.max_epoch=cfg.MAX_EPOCH 
@@ -47,6 +45,7 @@ class BaseTrainer():
         self.max_iter=self.max_epoch*self.step_per_epoch+1
         self.func = torch.nn.Softmax(dim=1)  
         self.conf_thres=cfg.ALGORITHM.CONFIDENCE_THRESHOLD   
+        self.valset_enable=cfg.DATASET.NUM_VALID!=0
         
         self.iter=0
         self.best_val=0
@@ -54,8 +53,7 @@ class BaseTrainer():
         self.best_val_test=0
         self.start_iter=1
         self.epoch=1
-        self.save_epoch=cfg.SAVE_EPOCH
-        
+        self.save_epoch=cfg.SAVE_EPOCH 
         
         self.l_num=len(self.labeled_trainloader.dataset)
         self.ul_num=len(self.unlabeled_trainloader.dataset)   
