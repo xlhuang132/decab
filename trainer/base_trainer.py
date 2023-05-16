@@ -52,6 +52,11 @@ class BaseTrainer():
         self.test_group_accs=[]
         self.val_group_accs=[]
         self.train_group_accs=[]
+        # ========== loss history =========
+        self.train_losses=[]
+        self.val_losses=[]
+        self.test_losses=[]
+        
         
         self.iter=0
         self.best_val=0
