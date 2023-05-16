@@ -136,8 +136,7 @@ class BaseTrainer():
                     self.save_checkpoint(file_name="best_model.pth")
                     
                 if self.epoch%self.save_epoch==0:
-                    self.save_checkpoint()
-                self.logger.info("== Pretraining is enable:{}".format(self.pretraining))
+                    self.save_checkpoint() 
                 self.logger.info('== Train_loss:{:>5.4f}  train_loss_x:{:>5.4f}   train_loss_u:{:>5.4f} '.\
                     format(self.losses.avg, self.losses_x.avg, self.losses_u.avg))
                 self.logger.info('== val_losss:{:>5.4f}   test_loss:{:>5.4f}   epoch_Time:{:>5.2f}min eta:{}'.\
