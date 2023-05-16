@@ -157,8 +157,7 @@ class BaseTrainer():
                 start_time = time.time()   
                 self.operate_after_epoch()
                 self.epoch+=1   
-                
-        self.plot()       
+                  
         return
     
     def build_data_loaders_for_dl_contra(self,)  :  
