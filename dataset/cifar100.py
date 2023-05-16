@@ -8,7 +8,7 @@ from .transform import build_transforms
 from .utils import make_imbalance, map_dataset, split_trainval, split_val_from_train, x_u_split,ood_inject
 import numpy as np
  
-def get_cifar100(root, out_dataset, start_label=0,ood_ratio=0, 
+def get_cifar100(root, out_dataset, start_label=0,
                  transform_train=None, transform_val=None,test_mode=False,
                  transform_train_ul=None,
                  download=True,cfg=None,logger=None): 

@@ -22,12 +22,12 @@ def build_dataset(cfg,logger=None,test_mode=False):
     ood_dataset=ood_dataset_map[cfg.DATASET.DU.OOD.DATASET] if cfg.DATASET.DU.OOD.ENABLE else 'None'
     transform_train,transform_train_ul,transform_val=build_transform(cfg)
     if dataset_name=='cifar10':
-        datasets=get_cifar10(dataset_root,  ood_dataset,ood_ratio=ood_ratio, 
+        datasets=get_cifar10(dataset_root,  ood_dataset,
                  transform_train=transform_train,
                  transform_train_ul=transform_train_ul, transform_val=transform_val,
                  download=True,cfg=cfg,logger=logger,test_mode=test_mode)
     elif dataset_name=='cifar100':
-        datasets=get_cifar100(dataset_root,  ood_dataset, ood_ratio=ood_ratio, 
+        datasets=get_cifar100(dataset_root,  ood_dataset,
                  transform_train=transform_train, transform_train_ul=transform_train_ul, transform_val=transform_val,
                  download=True,cfg=cfg,logger=logger,test_mode=test_mode)
     else:
