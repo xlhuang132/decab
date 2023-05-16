@@ -89,8 +89,11 @@ def get_root_path(cfg,dataset=None,algorithm=None,labeled_loss_type=None,
              Branch_setting=None,  
              ):
       
-    path=parent_path
-     
+    path=get_DL_dataset_alg_DU_dataset_OOD_path(cfg,dataset=dataset,algorithm=algorithm,labeled_loss_type=labeled_loss_type,
+             num_labeled_head=num_labeled_head,imb_factor_l=imb_factor_l,
+             num_unlabeled_head=num_unlabeled_head,imb_factor_ul=imb_factor_ul,
+             ood_dataset=ood_dataset,ood_r=ood_r
+             ) 
     return path 
 
 def prepare_output_path(cfg,logger): 
