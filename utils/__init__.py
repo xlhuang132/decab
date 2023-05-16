@@ -4,6 +4,7 @@ from .logger import *
 from .eval import *  
 from .utils import *
 from .FusionMatrix import * 
+from .misc import *
 from .dist_logger import * 
 import os, sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "progress"))
