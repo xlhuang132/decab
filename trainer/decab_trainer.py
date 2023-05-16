@@ -33,17 +33,12 @@ class DeCABTrainer(BaseTrainer):
         
         self.lambda_d=cfg.ALGORITHM.DeCAB.LAMBDA_D 
         self.final_lambda_d=self.lambda_d 
-        self.m=cfg.ALGORITHM.DeCAB.M 
-        self.debiased_contra_temperture=cfg.ALGORITHM.DeCAB.DeCAB_CONTRA_TEMPERTURE        
-        self.ood_detect_confusion_matrix=OODDetectFusionMatrix(self.num_classes)
-        self.loss_contrast= DebiasConLoss(temperature=self.debiased_contra_temperture)
-     
-        self.warmup_epoch=self.cfg.ALGORITHM.DeCAB.WARMUP_EPOCH        
-               
+        self.debiased_contra_temperture=cfg.ALGORITHM.DeCAB.DeCAB_CONTRA_TEMPERTURE  
+        self.loss_contrast= DebiasConLoss(temperature=self.debiased_contra_temperture) 
+        self.warmup_epoch=self.cfg.ALGORITHM.DeCAB.WARMUP_EPOCH    
         self.data_dist=self.labeled_trainloader.dataset.num_per_cls_list
         self.cls_prob=torch.tensor(self.data_dist/self.data_dist[0]).cuda() 
-        self.class_thresh=0.5+self.cls_prob*(self.conf_thres-0.5)
-        self.contrast_with_thresh=cfg.ALGORITHM.DeCAB.CONTRAST_THRESH 
+        self.class_thresh=0.5+self.cls_prob*(self.conf_thres-0.5) 
         
         if cfg.RESUME!='':
             self.load_checkpoint(cfg.RESUME) 
@@ -119,10 +114,9 @@ class DeCABTrainer(BaseTrainer):
         )
         labels = pred_class 
         
-        # 3. ctr loss  
-        contrast_mask = max_probs.ge(self.contrast_with_thresh).float()
+        # 3. ctr loss   
         features = torch.cat([f_u_s1.unsqueeze(1), f_u_s2.unsqueeze(1)], dim=1)  
-            
+        conf_sample=loss_weight    
         if self.sample_weight_enable:
             sample_weight=conf_sample*(1-max_probs)                        
         else:
