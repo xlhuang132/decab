@@ -71,20 +71,17 @@ def get_DL_dataset_alg_DU_dataset_path(cfg,dataset=None,algorithm=None,labeled_l
 
 def get_DL_dataset_alg_DU_dataset_OOD_path(cfg,dataset=None,algorithm=None,labeled_loss_type=None,
              num_labeled_head=None,imb_factor_l=None,num_unlabeled_head=None,imb_factor_ul=None,
-             ood_dataset=None,ood_r=None
-             ): 
+             ood_dataset=None): 
     parent_path=get_DL_dataset_alg_DU_dataset_path(cfg,dataset=dataset,algorithm=algorithm,labeled_loss_type=labeled_loss_type,
              num_labeled_head=num_labeled_head,imb_factor_l=imb_factor_l,num_unlabeled_head=num_unlabeled_head,imb_factor_ul=imb_factor_ul)
-    ood_dataset=cfg.DATASET.DU.OOD.DATASET if not ood_dataset else ood_dataset
-    ood_r=cfg.DATASET.DU.OOD.RATIO if not ood_r else ood_r
- 
+    ood_dataset=cfg.DATASET.DU.OOD.DATASET if not ood_dataset else ood_dataset 
     OOD_setting='OOD-{}-all'.format(ood_dataset)
     path=os.path.join(parent_path, OOD_setting)
     return path
 
 def get_root_path(cfg,dataset=None,algorithm=None,labeled_loss_type=None,
              num_labeled_head=None,imb_factor_l=None,num_unlabeled_head=None,imb_factor_ul=None,
-             ood_dataset=None,ood_r=None,
+             ood_dataset=None,
              sampler=None,sampler_mixup=None,dual_sampler_enable=None,dual_sampler=None,dual_sampler_mixup=None,
              Branch_setting=None,  
              ):
@@ -92,7 +89,7 @@ def get_root_path(cfg,dataset=None,algorithm=None,labeled_loss_type=None,
     path=get_DL_dataset_alg_DU_dataset_OOD_path(cfg,dataset=dataset,algorithm=algorithm,labeled_loss_type=labeled_loss_type,
              num_labeled_head=num_labeled_head,imb_factor_l=imb_factor_l,
              num_unlabeled_head=num_unlabeled_head,imb_factor_ul=imb_factor_ul,
-             ood_dataset=ood_dataset,ood_r=ood_r
+             ood_dataset=ood_dataset
              ) 
     return path 
 
