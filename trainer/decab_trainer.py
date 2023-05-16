@@ -24,7 +24,7 @@ from models.projector import  Projector
 from dataset.base import BaseNumpyDataset
 from dataset.build_dataloader import _build_loader
 from utils.misc import AverageMeter  
-from loss.debiased_soft_contra_loss import * 
+from loss.debiased_contra_loss import * 
 from models.feature_queue import FeatureQueue 
 
 class DeCABTrainer(BaseTrainer):   
@@ -36,7 +36,7 @@ class DeCABTrainer(BaseTrainer):
         self.m=cfg.ALGORITHM.DeCAB.M 
         self.debiased_contra_temperture=cfg.ALGORITHM.DeCAB.DeCAB_CONTRA_TEMPERTURE        
         self.ood_detect_confusion_matrix=OODDetectFusionMatrix(self.num_classes)
-        self.loss_contrast= DebiasSoftConLoss(temperature=self.debiased_contra_temperture)
+        self.loss_contrast= DebiasConLoss(temperature=self.debiased_contra_temperture)
      
         self.warmup_epoch=self.cfg.ALGORITHM.DeCAB.WARMUP_EPOCH        
                

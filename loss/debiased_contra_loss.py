@@ -8,7 +8,7 @@ import torch.nn as nn
 
 from sklearn.metrics.pairwise import cosine_similarity
 
-class DebiasSoftConLoss(nn.Module):
+class DebiasConLoss(nn.Module):
     def __init__(self, temperature=0.07, contrast_mode='all',
                  base_temperature=0.07):
         super().__init__()
