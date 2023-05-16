@@ -14,8 +14,7 @@ import os
 import datetime 
 from utils.utils import *
 import torch.nn.functional as F 
-from utils import AverageMeter, accuracy, create_logger,\
-    plot_group_acc_over_epoch,prepare_output_path,plot_loss_over_epoch,plot_acc_over_epoch
+from utils import AverageMeter, create_logger,prepare_output_path
 from utils.build_optimizer import get_optimizer, get_scheduler
 from utils.utils import cal_metric,print_results
 from dataset.build_dataloader import _build_loader
