@@ -15,7 +15,6 @@ import models
 import time 
 import torch.optim as optim 
 import os   
-from utils.plot import *
 import datetime
 import torch.nn.functional as F  
 from .base_trainer import BaseTrainer
