@@ -40,7 +40,7 @@ class DASOTrainer(BaseTrainer):
         self.T_dist = cfg.ALGORITHM.DASO.DIST_TEMP        
         self.with_dist_aware = cfg.ALGORITHM.DASO.WITH_DIST_AWARE
         self.interp_alpha = cfg.ALGORITHM.DASO.INTERP_ALPHA        
-        self.daso_warmup_iter=cfg.ALGORITHM.DASO.WARMUP_ITER + self.warmup_iter      
+        self.daso_warmup_iter=cfg.ALGORITHM.DASO.WARMUP_ITER      
     
             
     def train_step(self,pretraining=False):
