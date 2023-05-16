@@ -15,8 +15,7 @@ import torch.optim as optim
 import os   
 import datetime
 import torch.nn.functional as F  
-from .base_trainer import BaseTrainer 
-from loss.contrastive_loss import *
+from .base_trainer import BaseTrainer  
 from utils import FusionMatrix
 from models.projector import  Projector 
 class FixMatchTrainer(BaseTrainer):    

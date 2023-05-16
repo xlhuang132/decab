@@ -18,8 +18,7 @@ import torch.nn.functional as F
 from dataset.build_dataloader import _build_loader  
 from dataset.base import BaseNumpyDataset
 from .base_trainer import BaseTrainer
-import copy
-from loss.contrastive_loss import *
+import copy 
 from utils import FusionMatrix,AverageMeter
 from models.projector import  Projector 
 
