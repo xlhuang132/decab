@@ -128,8 +128,7 @@ class BaseTrainer():
                 eta_seconds = time_second * (self.max_epoch - self.epoch)
                 eta_string = str(datetime.timedelta(seconds=int(eta_seconds)))
                     
-                group_acc=fusion_matrix.get_group_acc(self.cfg.DATASET.GROUP_SPLITS)
-                self.train_group_accs.append(group_acc)
+                group_acc=fusion_matrix.get_group_acc(self.cfg.DATASET.GROUP_SPLITS) 
                 results=self.evaluate()
                 
                 if self.best_val<results[0]:
@@ -137,6 +136,7 @@ class BaseTrainer():
                     self.best_val_test=results[1]
                     self.best_val_iter=self.iter
                     self.save_checkpoint(file_name="best_model.pth")
+                    
                 if self.epoch%self.save_epoch==0:
                     self.save_checkpoint()
                 self.train_losses.append(self.losses.avg)
@@ -211,12 +211,6 @@ class BaseTrainer():
             val_loss, val_acc,val_group_acc,val_class_acc = self.eval_loop(eval_model,self.val_loader, self.val_criterion) 
         else: 
             val_loss, val_acc,val_group_acc,val_class_acc=test_loss, test_acc ,test_group_acc,test_class_acc
-        self.val_losses.append(val_loss)
-        self.val_accs.append(val_acc)
-        self.val_group_accs.append(val_group_acc)
-        self.test_losses.append(test_loss)
-        self.test_accs.append(test_acc)
-        self.test_group_accs.append(test_group_acc)
         
         if return_group_acc:
             if return_class_acc:
@@ -260,8 +254,7 @@ class BaseTrainer():
         if file_name=="":
             file_name="checkpoint.pth" if self.iter!=self.max_iter else "model_final.pth"
         torch.save({
-                    'model': self.model.state_dict(),
-                    'ema_model': self.ema_model.state_dict(),
+                    'model': self.model.state_dict(), 
                     'iter': self.iter, 
                     'best_val': self.best_val, 
                     'best_val_iter':self.best_val_iter, 
