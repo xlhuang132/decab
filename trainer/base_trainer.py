@@ -37,8 +37,7 @@ class BaseTrainer():
         # =================== build criterion ==============
         self.build_loss()
         # ========== build optimizer ===========         
-        self.optimizer = get_optimizer(cfg, self.model) 
-        # ========== build dataloader ==========     
+        self.optimizer = get_optimizer(cfg, self.model)  
         
         self.max_epoch=cfg.MAX_EPOCH 
         self.step_per_epoch=cfg.TRAIN_STEP   
@@ -46,6 +45,13 @@ class BaseTrainer():
         self.func = torch.nn.Softmax(dim=1)  
         self.conf_thres=cfg.ALGORITHM.CONFIDENCE_THRESHOLD   
         self.valset_enable=cfg.DATASET.NUM_VALID!=0
+        # ========== accuracy history =========
+        self.test_accs=[]
+        self.val_accs=[]
+        self.train_accs=[]
+        self.test_group_accs=[]
+        self.val_group_accs=[]
+        self.train_group_accs=[]
         
         self.iter=0
         self.best_val=0
@@ -206,6 +212,13 @@ class BaseTrainer():
             val_loss, val_acc,val_group_acc,val_class_acc = self.eval_loop(eval_model,self.val_loader, self.val_criterion) 
         else: 
             val_loss, val_acc,val_group_acc,val_class_acc=test_loss, test_acc ,test_group_acc,test_class_acc
+        
+        self.val_losses.append(val_loss)
+        self.val_accs.append(val_acc)
+        self.val_group_accs.append(val_group_acc)
+        self.test_losses.append(test_loss)
+        self.test_accs.append(test_acc)
+        self.test_group_accs.append(test_group_acc)
         
         if return_group_acc:
             if return_class_acc:
