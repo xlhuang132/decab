@@ -1,6 +1,5 @@
-# decab
-**Abstract** :Semi-supervised learning (SSL) has received significant attention due to its ability to use limited labeled data and various unlabeled data to train models with high generalization performance. However, common SSL methods assume that target distribution is balanced and there is no out-of-distribution (OOD) data in unlabled data, which is too harsh. In reality, data are frequently distributed with long tails, causing the model to be biased towards the head classes and ignoring the tail classes, resulting in more serious confirmation bias. In addition, since there may be OOD samples in the unlabeled data, in the case of intensified confirmation bias, the model is more inclined to assign OOD samples to non-tail classes with high confidence, resulting in more overwhelming for tail classes. To alleviate the class-aware bias problems, we propose Debiases Class-Aware Bias (DeCAB), which is an end-to-end semi-supervised method that incorporates contrastive information. Considering the class-aware bias of the model in real-world scenarios, its pseudo-labels are quite unreliable, so we introduce positive-pair scores instead of positive-negative pairs based on pseudo-labels for contrastive learning.
-Our method demonstrates robustness in various semi-supervised benchmarks and achieves state-of-the-art performance.
+# DeCAB: Debiased Semi-Supervised Learning for Imbalanced Open-Set Data
+**Abstract** : Semi-supervised learning (SSL) has received significant attention due to its ability to use limited labeled data and various unlabeled data to train models with high generalization performance. However, the assumption of a balanced class distribution in traditional SSL approaches limits a wide range of real applications, where the training data exhibits long-tailed distributions. As a consequence, the model is biased towards head classes and disregards tail classes, thereby leading to severe class-aware bias. Additionally, since the unlabeled data may contain out-of-distribution (OOD) samples without manual filtering, the model will be inclined to assign OOD samples to non-tail classes with high confidence, which further overwhelms the tail classes. To alleviate this class-aware bias, we propose an end-to-end semi-supervised method \textit{De}bias \textit{C}lass-\textit{A}ware \textit{B}ias (DeCAB). DeCAB introduces positive-pair scores for contrastive learning instead of positive-negative pairs based on unreliable pseudo-labels, avoiding false negative pairs negatively impacts the feature space. At the same time, DeCAB utilizes class-aware thresholds to select more tail samples and selective sample reweighting for feature learning, preventing OOD samples from being misclassified as head classes and accelerating the convergence speed of the model. Experimental results demonstrate that DeCAB is robust in various semi-supervised benchmarks and achieves state-of-the-art performance.
 #### Dependencies
 - python 3.7.12
 - PyTorch 1.8.1
@@ -10,9 +9,10 @@ Our method demonstrates robustness in various semi-supervised benchmarks and ach
 #### Dataset
 - CIFAR-10
 - CIFAR-100
-- Tine ImageNet
+- Tiny ImageNet
 - LSUN
 #### Usage
 Here is an example to run DeCAB on CIFAR-10:
 
 `python train.py --cfg cfg/cifar10_decab.yaml`
+
